@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Website Traffic Checker",
+  "version": "1.0",
+  "description": "Check the traffic of any website instantly.",
+  "icons": {
+    "128": "public/icon.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "public/icon.png"
+  }
+}
