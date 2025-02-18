@@ -202,26 +202,114 @@
             100% { top: 100%; }
         }
 
-        .footer {
-            margin-top: 1.5rem;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shine {
+            100% {
+                left: 125%;
+            }
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 0.6rem;
-            font-size: 0.8rem;
-            color: #94A3B8;
-            animation: fadeIn 1s ease-out;
+            min-height: 100vh;
+            background-color: #ffffff;
+            margin: 0;
         }
 
-        .footer img {
-            width: 20px;
-            height: 20px;
-            filter: grayscale(1);
-            transition: all 0.3s ease;
+        .badge-container {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #2B6CB0 0%, #2C5282 100%);
+            padding: 2px 5px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(18, 58, 110, 0.3);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            text-decoration: none;
+            color: white;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .footer:hover img {
-            filter: grayscale(0);
-            transform: rotate(360deg);
+        .badge-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 25%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 75%
+            );
+            transform: rotate(45deg);
+            transition: all 0.6s;
+        }
+
+        .badge-container:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(18, 58, 110, 0.4);
+        }
+
+        .badge-container:hover::before {
+            left: 125%;
+        }
+
+        .badge-container img {
+            width: 80px;
+            height: 80px;
+            margin-right: 12px;
+            border-radius: 8px;
+            background: black;
+            padding: 5px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .badge-container:hover img {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .badge-text {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .badge-text::after {
+            content: 'Security Certified';
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .badge-container,
+            .badge-container:hover img {
+                transition: none;
+                animation: none;
+            }
         }
 
         .metric-grid {
@@ -429,11 +517,14 @@
             </div>
         </div>
     </div>
+<br>
+<div>
+    <a href="https://www.seerror.com/" class="badge-container" target="_blank" rel="noopener noreferrer">
+        <img src="/public/images/seerror.png" alt="Seerror Security Badge">
+        <span class="badge-text">Audited by Seerror</span>
+    </a>
+</div>
 
-    <div class="footer">
-        <img src="/public/images/company.png" alt="Serror Logo">
-        <span>Powered by Seerror Intelligence</span>
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
